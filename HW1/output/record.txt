@@ -1,0 +1,42 @@
+06:
+Train loss: 1.1420, Valid loss: 0.8242
+config = {
+    'seed': 7,      # Your seed number, you can pick your lucky number. :)
+    'select_all': False,   # Whether to use all features.
+    'valid_ratio': 0.2,   # validation_size = train_size * valid_ratio
+    'n_epochs': 3000,     # Number of epochs.            
+    'batch_size': 256, 
+    'learning_rate': 0.003,              
+    'early_stop': 400,    # If model has not improved for this many consecutive epochs, stop training.     
+    'save_path': './models/model.ckpt',  # Your model will be saved here.
+    'weight_decay': 0.005,
+    'select_k_best': 30
+}
+
+07:
+Train loss: 0.9914, Valid loss: 1.1731
+config = {
+    'seed': 321,      # Your seed number, you can pick your lucky number. :)
+    'select_all': False,   # Whether to use all features.
+    'valid_ratio': 0.2,   # validation_size = train_size * valid_ratio
+    'n_epochs': 3000,     # Number of epochs.            
+    'batch_size': 256, 
+    'learning_rate': 0.003,  # Adam: 0.003              
+    'early_stop': 400,    # If model has not improved for this many consecutive epochs, stop training.     
+    'save_path': './models/model.ckpt'  # Your model will be saved here.
+}
+
+08:
+Train loss: 1.0955, Valid loss: 1.0173
+config = {
+    'seed': 58,      # Your seed number, you can pick your lucky number. :)
+    'select_all': False,   # Whether to use all features.
+    'valid_ratio': 0.2,   # validation_size = train_size * valid_ratio
+    'n_epochs': 3000,     # Number of epochs.            
+    'batch_size': 256, 
+    'learning_rate': 0.001,              
+    'early_stop': 400,    # If model has not improved for this many consecutive epochs, stop training.     
+    'save_path': './models/model.ckpt',  # Your model will be saved here.
+    'weight_decay': 0.001,
+    'select_k_best': 30
+}
