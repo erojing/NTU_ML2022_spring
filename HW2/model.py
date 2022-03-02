@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import numpy as np
 
 class BasicBlock(nn.Module):
     def __init__(self, input_dim, output_dim, dropout_rate):
@@ -8,7 +9,7 @@ class BasicBlock(nn.Module):
 
         self.block = nn.Sequential(
             nn.Linear(input_dim, output_dim),
-            nn.BatchNorm1d(),
+            nn.BatchNorm1d(output_dim),
             nn.ReLU(),
             nn.Dropout(dropout_rate)
         )

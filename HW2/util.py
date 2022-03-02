@@ -3,6 +3,7 @@ import random
 import pandas as pd
 import torch
 from tqdm import tqdm
+import numpy as np
 
 def load_feat(path):
     feat = torch.load(path)
@@ -92,3 +93,13 @@ def preprocess_data(split, feat_dir, phone_path, concat_nframes, train_ratio=0.8
       return X, y
     else:
       return X
+
+#fix seed
+def same_seeds(seed):
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)  
+    np.random.seed(seed)  
+    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.deterministic = True
