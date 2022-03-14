@@ -69,6 +69,7 @@ class BiRNN(nn.Module):
     def forward(self, x):
         h0 = torch.zeros(self.num_layers*2, x.size(0), self.hidden_size).to(device) # initialize hidden and cell state
         c0 = torch.zeros(self.num_layers*2, x.size(0), self.hidden_size).to(device)
-        out, _ = self.lstm(x, (h0, c0)) # through RNN
-        out = self.fc(out[:, -1, :]) # final dense layer
+        lstm_out, _ = self.lstm(x, (h0, c0)) # through RNN
+        # out = self.fc(out[:, -1, :]) # final dense layer
+        out = self.fc(lstm_out) # final dense layer
         return out
