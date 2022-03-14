@@ -27,31 +27,32 @@ class Classifier(nn.Module):
             # BasicBlock(input_dim, hidden_dim, dropout_rate),
             # *[BasicBlock(hidden_dim, hidden_dim, dropout_rate) for _ in range(hidden_layers)],
             # nn.Linear(hidden_dim, output_dim)
-            nn.Linear(input_dim, 128),
-            nn.BatchNorm1d(128),
+            nn.Linear(input_dim, 2048), # 1
+            # nn.LeakyReLU(),
             nn.ReLU(),
-            nn.Dropout(dropout_rate), # 1st layer
-            nn.Linear(128, 256),
-            nn.BatchNorm1d(256),
+            nn.BatchNorm1d(2048),
+            nn.Dropout(0.3),
+            nn.Linear(2048, 1024), # 2
+            # nn.LeakyReLU(),
             nn.ReLU(),
-            nn.Dropout(dropout_rate), # 2nd layer
-            nn.Linear(256, 512),
+            nn.BatchNorm1d(1024),
+            nn.Dropout(0.3),
+            nn.Linear(1024, 512), # 2
+            # nn.LeakyReLU(),
+            nn.ReLU(),
             nn.BatchNorm1d(512),
+            nn.Dropout(0.3),
+            nn.Linear(512, 256), # 3
+            # nn.LeakyReLU(),
             nn.ReLU(),
-            nn.Dropout(dropout_rate), # 3rd layer
-            nn.Linear(512, 256),
             nn.BatchNorm1d(256),
+            nn.Dropout(0.2),
+            nn.Linear(256, 128), # 4
+            # nn.LeakyReLU(),
             nn.ReLU(),
-            nn.Dropout(dropout_rate), # 4th layer
-            nn.Linear(256, 128),
             nn.BatchNorm1d(128),
-            nn.ReLU(),
-            nn.Dropout(dropout_rate), # 5th layer
-            nn.Linear(128, 64),
-            nn.BatchNorm1d(64),
-            nn.ReLU(),
-            nn.Dropout(dropout_rate), # 6th layer
-            nn.Linear(64, output_dim) # output layer
+            nn.Dropout(0.2),
+            nn.Linear(128, output_dim)
         )
 
     def forward(self, x):
