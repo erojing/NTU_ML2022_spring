@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 sys.path.append('./Conformer')
 from CF import Conformer
+from sap import *
 
 
 class Classifier(nn.Module):
@@ -49,7 +50,7 @@ class Classifier(nn.Module):
         #out = out.transpose(0, 1)
         # out: (batch size, length, d_model)
         # mean pooling
-        stats = out.mean(dim=1)
+        stats = SelfAttentionPooling(out)
         # stats: (batch size, d_model)
         out = self.pred_layer(stats)
         # out: (batch, n_spks)
